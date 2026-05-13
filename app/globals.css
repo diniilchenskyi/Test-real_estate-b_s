@@ -33,6 +33,14 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    /* BlockEstate brand (teal / deep navy) */
+    --be-surface-deep: #030712;
+    --be-surface: #0c1222;
+    --be-surface-muted: rgba(30, 41, 59, 0.45);
+    --be-accent: #2dd4bf;
+    --be-accent-hover: #14b8a6;
+    --be-accent-glow: rgba(45, 212, 191, 0.22);
+    --be-success: #34d399;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -91,4 +99,32 @@ body {
   min-width: 0;
   position: relative;
   margin-left: var(--slide-spacing);
+}
+
+@keyframes tower-float {
+  0%,
+  100% {
+    transform: rotateX(12deg) rotateY(-28deg) translateY(0);
+  }
+  50% {
+    transform: rotateX(14deg) rotateY(-32deg) translateY(-6px);
+  }
+}
+
+@keyframes block-pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.12);
+  }
+}
+
+.animate-tower-float {
+  animation: tower-float 8s ease-in-out infinite;
+}
+
+.animate-block-pulse {
+  animation: block-pulse 6s ease-in-out infinite;
 }

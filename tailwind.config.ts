@@ -11,6 +11,13 @@ export default {
   theme: {
   	extend: {
   		colors: {
+  			'be-surface-deep': 'var(--be-surface-deep)',
+  			'be-surface': 'var(--be-surface)',
+  			'be-surface-muted': 'var(--be-surface-muted)',
+  			'be-accent': 'var(--be-accent)',
+  			'be-accent-hover': 'var(--be-accent-hover)',
+  			'be-accent-glow': 'var(--be-accent-glow)',
+  			'be-success': 'var(--be-success)',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

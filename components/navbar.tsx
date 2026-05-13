@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import Image from 'next/image'
 import { SignInModal } from './auth/sign-in-modal'
 import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
@@ -19,8 +20,18 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-white text-xl font-bold">
-              BlockEstate
+            <Link href="/" className="flex items-center gap-2.5 text-white">
+              <Image
+                src="/logo.svg"
+                alt=""
+                width={36}
+                height={36}
+                className="rounded-lg shadow-[0_0_20px_var(--be-accent-glow)]"
+                priority
+              />
+              <span className="text-xl font-bold tracking-tight">
+                Block<span className="text-be-accent">Estate</span>
+              </span>
             </Link>
           </div>
           

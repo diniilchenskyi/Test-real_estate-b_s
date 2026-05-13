@@ -7,7 +7,7 @@ import { Award, Building2, Users } from 'lucide-react'
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0B1120] text-gray-100">
+    <div className="min-h-screen bg-be-surface-deep text-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -62,7 +62,7 @@ export default function AboutPage() {
           ].map((item, index) => (
             <Card key={index} className="bg-gray-800/50 border-gray-700">
               <CardContent className="p-6 text-center">
-                <item.icon className="h-12 w-12 text-[#3B82F6] mx-auto mb-4" />
+                <item.icon className="h-12 w-12 text-be-accent mx-auto mb-4" />
                 <div className="text-3xl font-bold mb-2 text-white">{item.stat}</div>
                 <div className="text-gray-400">{item.label}</div>
               </CardContent>

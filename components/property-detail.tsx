@@ -7,8 +7,8 @@ import Image from 'next/image'
 import { FractionalOwnershipSlider } from '@/components/fractional-ownership-slider'
 import { ChevronLeft } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { properties } from '@/lib/properties-data'
-import type { Property } from '@/lib/properties-data'
+import { getPropertyById } from '@/lib/properties-data'
+import { PageSection } from '@/components/layout/page-section'
 
 interface PropertyDetailProps {
   id: string
@@ -16,23 +16,22 @@ interface PropertyDetailProps {
 
 export function PropertyDetail({ id }: PropertyDetailProps) {
   const router = useRouter()
-  const propertyId = parseInt(id)
-  const property = properties.find((p: Property) => p.id === propertyId)
+  const property = getPropertyById(id)
 
   if (!property) {
     return (
-      <div className="min-h-screen bg-[#0B1120] text-gray-100 p-8">
+      <div className="min-h-screen bg-be-surface-deep text-gray-100 p-8">
         <h1 className="text-2xl font-bold text-white">Property not found</h1>
       </div>
     )
   }
 
   return (
-    <div className="min-h-screen bg-[#0B1120] text-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <button 
+    <div className="min-h-screen bg-be-surface-deep text-gray-100">
+      <PageSection className="py-12">
+        <button
           onClick={() => router.back()}
-          className="inline-flex items-center text-[#3B82F6] hover:text-[#2563EB] mb-6"
+          className="inline-flex items-center text-be-accent hover:text-be-accent-hover mb-6"
         >
           <ChevronLeft className="h-5 w-5 mr-1" />
           Back to Properties
@@ -55,11 +54,11 @@ export function PropertyDetail({ id }: PropertyDetailProps) {
             <div className="grid grid-cols-2 gap-4 mb-6">
               <div className="bg-gray-800/50 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-300">Price</h3>
-                <p className="text-2xl font-bold text-[#3B82F6]">${property.price.toLocaleString()}</p>
+                <p className="text-2xl font-bold text-be-accent">${property.price.toLocaleString()}</p>
               </div>
               <div className="bg-gray-800/50 p-4 rounded-lg">
                 <h3 className="text-lg font-semibold text-gray-300">Expected ROI</h3>
-                <p className="text-2xl font-bold text-[#10B981]">{property.roi}%</p>
+                <p className="text-2xl font-bold text-be-success">{property.roi}%</p>
               </div>
             </div>
 
@@ -70,12 +69,12 @@ export function PropertyDetail({ id }: PropertyDetailProps) {
               cryptoPrice={2000}
             />
 
-            <Button className="w-full mt-6 bg-[#3B82F6] hover:bg-[#2563EB] text-white">
+            <Button className="w-full mt-6 bg-be-accent hover:bg-be-accent-hover text-be-surface-deep font-semibold">
               Invest Now
             </Button>
           </CardContent>
         </Card>
-      </div>
+      </PageSection>
     </div>
   )
 } 

@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "BlockEstate",
-  description: "Invest in Real Estate with Blockchain",
+  title: "BlockEstate — Fractional Real Estate",
+  description: "Invest in tokenized real estate with transparent on-chain records.",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0B1120] min-h-screen`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-be-surface-deep min-h-screen`}>
         <Navbar />
         {children}
       </body>

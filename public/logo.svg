@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+  <rect width="40" height="40" rx="10" fill="url(#beGrad)"/>
+  <path d="M10 28V14l6-3 6 3v14" stroke="#030712" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.35"/>
+  <path d="M16 28V17l4-2 4 2v11" stroke="#030712" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <defs>
+    <linearGradient id="beGrad" x1="8" y1="6" x2="34" y2="36" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2dd4bf"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+</svg>

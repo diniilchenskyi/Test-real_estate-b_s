@@ -2,25 +2,25 @@
 
 import React from 'react'
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
 import { Building2, ChevronRight, Coins, Home, LineChart } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { HeroCarousel } from '@/components/hero-carousel'
+import { PropertyCard } from '@/components/properties/property-card'
+import { PageSection } from '@/components/layout/page-section'
 import { properties } from '@/lib/properties-data'
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[#0B1120] text-gray-100">
+    <div className="min-h-screen bg-be-surface-deep text-gray-100">
       {/* Hero Section */}
-      <div className="relative bg-[#0B1120] h-[80vh]">
+      <div className="relative bg-be-surface h-[80vh]">
         <HeroCarousel />
         <div className="relative z-20 h-full">
-          <div className="max-w-7xl mx-auto h-full flex items-center px-4 sm:px-6 lg:px-8">
+          <PageSection className="h-full flex items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl lg:text-7xl">
                 <span className="block">Invest in Real Estate</span>
-                <span className="block text-[#3B82F6]">with Blockchain</span>
+                <span className="block text-be-accent">with Blockchain</span>
               </h1>
               <p className="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 BlockEstate revolutionizes property investment through fractional ownership. 
@@ -28,7 +28,7 @@ export default function Page() {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <Button size="lg" className="w-full bg-[#3B82F6] hover:bg-[#2563EB] text-white">
+                  <Button size="lg" className="w-full bg-be-accent hover:bg-be-accent-hover text-be-surface-deep font-semibold shadow-[0_0_24px_var(--be-accent-glow)]">
                     Start Investing
                     <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -40,46 +40,25 @@ export default function Page() {
                 </div>
               </div>
             </div>
-          </div>
+          </PageSection>
         </div>
       </div>
 
       {/* Featured Properties */}
       <div className="bg-gray-800/50 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <PageSection>
           <h2 className="text-3xl font-extrabold tracking-tight text-white">Featured Properties</h2>
           <div className="mt-6 grid gap-6 lg:grid-cols-3">
             {properties.map((property) => (
-              <Card key={property.id} className="overflow-hidden bg-gray-700/50 border-gray-600">
-                <Image
-                  src={property.image}
-                  alt={property.title}
-                  width={400}
-                  height={200}
-                  className="w-full h-48 object-cover"
-                />
-                <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold text-white">{property.title}</h3>
-                  <p className="text-sm text-gray-300 mt-1">{property.location}</p>
-                  <div className="flex justify-between items-center mt-4">
-                    <span className="text-[#3B82F6] font-bold">${property.price.toLocaleString()}</span>
-                    <span className="text-[#10B981]">Expected ROI: {property.roi}%</span>
-                  </div>
-                  <Link href={`/property/${property.id}`}>
-                    <Button className="w-full mt-4 bg-[#3B82F6] hover:bg-[#2563EB] text-white">
-                      View Details
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <PropertyCard key={property.id} property={property} variant="flat" />
             ))}
           </div>
-        </div>
+        </PageSection>
       </div>
 
       {/* How It Works section */}
-      <div className="bg-[#0B1120] py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-be-surface py-12">
+        <PageSection>
           <h2 className="text-3xl font-extrabold tracking-tight text-white text-center">How It Works</h2>
           <div className="mt-10">
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
@@ -90,7 +69,7 @@ export default function Page() {
                 { icon: Building2, title: "Grow Your Portfolio", description: "Diversify your investments across multiple properties and locations." },
               ].map((step, index) => (
                 <div key={index} className="text-center">
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-[#3B82F6] text-white mx-auto">
+                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-be-accent text-be-surface-deep mx-auto shadow-[0_0_16px_var(--be-accent-glow)]">
                     <step.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-lg font-medium text-white">{step.title}</h3>
@@ -99,12 +78,12 @@ export default function Page() {
               ))}
             </div>
           </div>
-        </div>
+        </PageSection>
       </div>
 
       {/* Footer */}
       <footer className="bg-gray-800/50">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <PageSection className="py-12">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             <div>
               <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
@@ -143,7 +122,7 @@ export default function Page() {
               &copy; 2024 BlockEstate. All rights reserved.
             </p>
           </div>
-        </div>
+        </PageSection>
       </footer>
     </div>
   )

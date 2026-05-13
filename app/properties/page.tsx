@@ -1,44 +1,39 @@
 'use client'
 
 import React from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import Link from 'next/link'
-import Image from 'next/image'
 import { properties } from '@/lib/properties-data'
+import { PropertyCard } from '@/components/properties/property-card'
+import { CssBuildingShowcase } from '@/components/properties/css-building-showcase'
+import { PageSection } from '@/components/layout/page-section'
 
 export default function PropertiesPage() {
   return (
-    <div className="min-h-screen bg-[#0B1120] text-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold mb-8 text-white">Available Properties</h1>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="min-h-screen bg-be-surface-deep text-gray-100">
+      <PageSection className="py-12">
+        <h1 className="text-3xl font-bold mb-2 text-white tracking-tight">Available Properties</h1>
+        <p className="text-gray-400 mb-10 max-w-2xl">
+          CSS 3D skyline preview, then hover any card for a perspective tilt before opening details.
+        </p>
+
+        <section className="mb-14 rounded-2xl border border-white/10 bg-be-surface/80 overflow-hidden shadow-[0_0_0_1px_rgba(45,212,191,0.08)]">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 px-5 py-4 border-b border-white/10 bg-be-surface-muted">
+            <div>
+              <h2 className="text-lg font-semibold text-white">3D showcase</h2>
+              <p className="text-sm text-gray-400">
+                Lightweight CSS 3D towers — stylized preview for high-rise listings (no third-party WebGL embed).
+              </p>
+            </div>
+            <span className="text-xs uppercase tracking-wider text-be-accent font-medium">CSS · preserve-3d</span>
+          </div>
+          <CssBuildingShowcase />
+        </section>
+
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {properties.map((property) => (
-            <Card key={property.id} className="overflow-hidden bg-gray-700/50 border-gray-600">
-              <Image
-                src={property.image}
-                alt={property.title}
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-4">
-                <h3 className="text-lg font-semibold text-white">{property.title}</h3>
-                <p className="text-sm text-gray-300 mt-1">{property.location}</p>
-                <div className="flex justify-between items-center mt-4">
-                  <span className="text-[#3B82F6] font-bold">${property.price.toLocaleString()}</span>
-                  <span className="text-[#10B981]">Expected ROI: {property.roi}%</span>
-                </div>
-                <Link href={`/property/${property.id}`}>
-                  <Button className="w-full mt-4 bg-[#3B82F6] hover:bg-[#2563EB] text-white">
-                    View Details
-                  </Button>
-                </Link>
-              </CardContent>
-            </Card>
+            <PropertyCard key={property.id} property={property} variant="tilt" />
           ))}
         </div>
-      </div>
+      </PageSection>
     </div>
   )
 }

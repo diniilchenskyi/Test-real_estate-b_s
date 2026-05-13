@@ -23,6 +23,14 @@ export const properties = [
     roi: 9.1,
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
   },
+  {
+    id: 4,
+    title: "Skyline Business Tower",
+    location: "Chicago, IL",
+    price: 920000,
+    roi: 8.9,
+    image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+  },
 ]
 
 export type Property = {
@@ -32,4 +40,10 @@ export type Property = {
   price: number
   roi: number
   image: string
-} 
+}
+
+export function getPropertyById(id: string | number): Property | undefined {
+  const n = typeof id === 'number' ? id : parseInt(String(id), 10)
+  if (Number.isNaN(n)) return undefined
+  return properties.find((p) => p.id === n)
+}

@@ -4,8 +4,11 @@ const ErrorHandler = require('../../utils/errorHandler');
 const asyncErrorHandler = require('../helpers/asyncErrorHandler');
 
 exports.isAuthenticatedUser = asyncErrorHandler(async (req, res, next) => {
-
-    const { token } = req.cookies;
+    let token = req.cookies?.token;
+    const authHeader = req.headers.authorization;
+    if (!token && typeof authHeader === 'string' && authHeader.startsWith('Bearer ')) {
+        token = authHeader.slice(7).trim();
+    }
 
     if (!token) {
         return next(new ErrorHandler("Please Login to Access", 401))

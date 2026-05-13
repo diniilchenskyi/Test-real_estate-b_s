@@ -44,6 +44,13 @@ const userSchema = new mongoose.Schema({
     resetPasswordExpire: Date,
 });
 
+userSchema.set('toJSON', {
+    transform: (_doc, ret) => {
+        delete ret.password;
+        return ret;
+    },
+});
+
 userSchema.pre("save", async function (next) {
 
     if (!this.isModified("password")) {
@@ -55,7 +62,7 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.getJWTToken = function () {
     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE
+        expiresIn: process.env.JWT_EXPIRE || '7d',
     });
 }
 

@@ -6,26 +6,39 @@ const sendEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 const cloudinary = require('cloudinary');
 
-// Register User
+// Register User (avatar optional — web form registers without Cloudinary upload)
 exports.registerUser = asyncErrorHandler(async (req, res, next) => {
+    const { name, email, password } = req.body;
+    const gender = req.body.gender || 'other';
 
-    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-        folder: "avatars",
-        width: 150,
-        crop: "scale",
-    });
+    let avatar = {
+        public_id: 'default_avatar',
+        url: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop',
+    };
 
-    const { name, email, gender, password } = req.body;
+    if (
+        req.body.avatar &&
+        typeof req.body.avatar === 'string' &&
+        req.body.avatar.length > 30 &&
+        process.env.CLOUDINARY_NAME
+    ) {
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: 'scale',
+        });
+        avatar = {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url,
+        };
+    }
 
     const user = await User.create({
-        name, 
+        name,
         email,
         gender,
         password,
-        avatar: {
-            public_id: myCloud.public_id,
-            url: myCloud.secure_url,
-        },
+        avatar,
     });
 
     sendToken(user, 201, res);

@@ -11,6 +11,9 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
 
+const healthRoute = require('./routes/healthRoute');
+app.use('/api/v1', healthRoute);
+
 const user = require('./routes/userRoute');
 const product = require('./routes/productRoute');
 const order = require('./routes/orderRoute');
